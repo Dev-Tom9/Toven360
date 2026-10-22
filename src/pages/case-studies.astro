@@ -1,0 +1,287 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroHeading from '../components/HeroHeading.astro';
+
+const caseStudies = [
+  {
+    slug: 'hirelogic',
+    category: 'AI Recruitment',
+    title: 'HireLogic',
+    client: 'Greenfoot Engineering',
+    summary: 'AI recruitment intelligence platform with CV parsing, candidate ranking, and interview question generation.',
+    description: 'Built end-to-end AI recruitment system with a RAG pipeline over embeddings. Processes CVs, ranks candidates against job descriptions, and generates role-specific interview questions.',
+    metric: '65%',
+    metricLabel: 'faster candidate screening',
+    metricContext: 'in first week of deployment',
+    stack: ['Python', 'FastAPI', 'Next.js', 'ChromaDB', 'OpenAI'],
+    status: 'Live',
+    link: 'https://hire-logic.onrender.com',
+    featured: true,
+  },
+  {
+    slug: 'nexus-ai-ops',
+    category: 'Workflow Automation',
+    title: 'Nexus AI-Ops',
+    client: 'Internal Platform',
+    summary: 'Internal AI automation platform handling document summarization, report writing, and email drafting.',
+    description: 'AI automation platform built with Python, FastAPI, React, and PostgreSQL. Reduced employee task workload significantly within the first week of internal adoption.',
+    metric: '40%',
+    metricLabel: 'reduction in task workload',
+    metricContext: 'within first week of adoption',
+    stack: ['Python', 'FastAPI', 'React', 'PostgreSQL'],
+    status: 'Live',
+    link: 'https://nexus-ai-ops.onrender.com',
+    featured: true,
+  },
+  {
+    slug: 'westend-hms',
+    category: 'Healthcare',
+    title: 'Westend Hospital HMS',
+    client: 'Westend Hospital',
+    summary: 'Full hospital management system built end-to-end, including biometric attendance integration.',
+    description: 'Complete hospital operations platform — patient records, staff management, appointments, and biometric device integration syncing attendance data into the system.',
+    metric: 'Live',
+    metricLabel: 'in production',
+    metricContext: 'handling daily hospital operations',
+    stack: ['PHP', 'CodeIgniter', 'Laravel', 'SQL'],
+    status: 'Live',
+    link: 'https://westendhospital.health',
+    featured: false,
+  },
+  {
+    slug: 'coverx',
+    category: 'Insurance',
+    title: 'CoverX',
+    client: 'Greenfoot Engineering',
+    summary: 'Insurance (HMO) platform for policyholders to access and use health coverage.',
+    description: 'End-to-end insurance platform covering enrollment, provider verification, treatment authorization, and claims processing.',
+    metric: 'Live',
+    metricLabel: 'in production',
+    metricContext: 'used by policyholders and providers',
+    stack: ['Healthcare', 'Insurance', 'Full-stack'],
+    status: 'Live',
+    link: 'https://coverx.org',
+    featured: false,
+  },
+  {
+    slug: 'safaricoollab',
+    category: 'Laboratory',
+    title: 'Safaricoollab',
+    client: 'Laboratory Client',
+    summary: 'Laboratory management application with role-based access control across all staff roles.',
+    description: 'Lab operations platform with full RBAC implemented across staff roles — administrators, technicians, and support staff each with scoped permissions.',
+    metric: 'Live',
+    metricLabel: 'in production',
+    metricContext: 'used for daily lab operations',
+    stack: ['PHP', 'Laravel', 'SQL'],
+    status: 'Live',
+    link: 'https://app.safaricoollab.com',
+    featured: false,
+  },
+  {
+    slug: 'ecofiberx',
+    category: 'Network / Data',
+    title: 'EcoFiberX',
+    client: 'Greenfoot Engineering',
+    summary: 'Self-service platform for router customers to subscribe to monthly internet data plans.',
+    description: 'Customer-facing platform with in-app messaging so subscribers can reach admins and support directly. Similar to MTN Fibre subscription model.',
+    metric: 'Live',
+    metricLabel: 'on Google Play Store',
+    metricContext: 'available to all subscribers',
+    stack: ['Full-stack', 'Android', 'Mobile'],
+    status: 'Live',
+    link: null,
+    featured: false,
+  },
+];
+---
+
+<Layout
+  title="Case Studies — Toven360°"
+  description="Real systems we have built and shipped. Healthcare, insurance, laboratory, network, AI recruitment, and workflow automation platforms — all live in production."
+>
+
+  <!-- HERO -->
+  <section class="relative gradient-sky pt-10 pb-10 md:pt-14 md:pb-12 overflow-hidden">
+    <div class="container-toven relative z-10">
+      <div class="max-w-4xl">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-6">
+          Selected Work
+        </p>
+        <HeroHeading
+          before="Built. Shipped."
+          highlight="Live"
+          after="in production."
+          rotate="right"
+          color="lime"
+          size="lg"
+          class="mb-8"
+        />
+        <p class="text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed">
+          Real systems, running in real businesses today. Healthcare, insurance, laboratory, network, AI recruitment, and automation platforms — engineered end-to-end.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <section class="py-16 bg-ink text-white">
+    <div class="container-toven">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="text-4xl md:text-5xl font-extrabold text-lime mb-2">6+</p>
+          <p class="text-sm text-white/60 uppercase tracking-widest">Years building</p>
+        </div>
+        <div>
+          <p class="text-4xl md:text-5xl font-extrabold text-lime mb-2">6</p>
+          <p class="text-sm text-white/60 uppercase tracking-widest">Live systems</p>
+        </div>
+        <div>
+          <p class="text-4xl md:text-5xl font-extrabold text-lime mb-2">4</p>
+          <p class="text-sm text-white/60 uppercase tracking-widest">Industries served</p>
+        </div>
+        <div>
+          <p class="text-4xl md:text-5xl font-extrabold text-lime mb-2">65%</p>
+          <p class="text-sm text-white/60 uppercase tracking-widest">Peak efficiency gain</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED CASE STUDIES -->
+  <section class="py-32 bg-white">
+    <div class="container-toven">
+
+      <div class="max-w-3xl mb-16">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          Featured
+        </p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          Headline results.<br />
+          <span class="text-ink-subtle">Measurable outcomes.</span>
+        </h2>
+      </div>
+
+      {caseStudies.filter(c => c.featured).map((item) => (
+        <div class="group mb-8 p-10 lg:p-14 rounded-[2.5rem] bg-surface-soft border border-border/60 hover:border-transparent hover:shadow-[0_30px_80px_-20px_rgba(10,14,26,0.18)] transition-all duration-500">
+          <div class="grid lg:grid-cols-12 gap-10 items-center">
+
+            <div class="lg:col-span-7">
+              <p class="text-xs font-semibold text-sky-accent uppercase tracking-widest mb-4">
+                {item.category}
+              </p>
+              <h3 class="text-3xl md:text-4xl font-extrabold text-ink mb-4 tracking-tight">
+                {item.title}
+              </h3>
+              <p class="text-lg text-ink-muted leading-relaxed mb-6">
+                {item.description}
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                {item.stack.map((tech) => (
+                  <span class="text-xs px-3 py-1.5 rounded-full bg-white border border-border text-ink-muted font-medium">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              {item.link && (
+                <a href={item.link} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:gap-3 transition-all">
+                  View live site
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </a>
+              )}
+            </div>
+
+            <div class="lg:col-span-5">
+              <div class="p-10 rounded-[2rem] bg-ink text-white text-center">
+                <p class="text-6xl md:text-7xl font-extrabold text-lime mb-3 tracking-tight">{item.metric}</p>
+                <p class="text-base font-semibold mb-2">{item.metricLabel}</p>
+                <p class="text-sm text-white/50">{item.metricContext}</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      ))}
+
+    </div>
+  </section>
+
+  <!-- ALL CASE STUDIES -->
+  <section class="py-32 bg-surface-soft">
+    <div class="container-toven">
+
+      <div class="max-w-3xl mb-16">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          All work
+        </p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          Every system.<br />
+          <span class="text-ink-subtle">Every industry.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {caseStudies.map((item) => (
+          <div class="group p-8 rounded-[2rem] bg-white border border-border/60 hover:border-transparent hover:shadow-[0_20px_60px_-15px_rgba(10,14,26,0.12)] transition-all duration-500 flex flex-col">
+
+            <div class="flex items-center justify-between mb-6">
+              <p class="text-xs font-semibold text-sky-accent uppercase tracking-widest">
+                {item.category}
+              </p>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-lime/40 text-ink">
+                {item.status}
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-ink mb-3 tracking-tight">{item.title}</h3>
+
+            <p class="text-sm text-ink-muted leading-relaxed mb-6 flex-1">{item.summary}</p>
+
+            <div class="pt-6 border-t border-border mb-4">
+              <p class="text-2xl font-extrabold text-ink tracking-tight">{item.metric}</p>
+              <p class="text-xs text-ink-subtle mt-1">{item.metricLabel}</p>
+            </div>
+
+            <p class="text-xs text-ink-subtle mb-4 font-medium">{item.stack.join(' · ')}</p>
+
+            {item.link ? (
+              <a href={item.link} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold text-ink group-hover:gap-3 transition-all">
+                View project
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
+              </a>
+            ) : (
+              <span class="text-sm font-semibold text-ink-subtle">Private deployment</span>
+            )}
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-white">
+    <div class="container-toven">
+      <div class="relative rounded-[2.5rem] bg-gradient-sky overflow-hidden p-12 md:p-20 text-center">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-white/40 blur-3xl pointer-events-none"></div>
+        <div class="relative">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-ink mb-6 leading-[1.05] tracking-tight">
+            Want a system like this?
+          </h2>
+          <p class="text-lg text-ink-muted max-w-xl mx-auto mb-10">
+            Book a discovery call. We will scope your build honestly — and show you exactly how we would approach it.
+          </p>
+          <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-ink text-white font-semibold hover:bg-ink-soft transition-colors">
+            Book a discovery call →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

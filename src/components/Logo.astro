@@ -1,0 +1,17 @@
+---
+import AnimatedLogo from './AnimatedLogo.astro';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<a href="/" class={`flex items-center gap-2 group ${className}`}>
+  <AnimatedLogo class="transition-transform group-hover:scale-105" />
+
+  <span class="font-hero font-bold text-2xl text-ink tracking-tight" style="font-family: var(--font-hero);">
+    Toven<span class="text-sky-accent">360°</span>
+  </span>
+</a>

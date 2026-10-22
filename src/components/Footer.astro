@@ -1,0 +1,98 @@
+---
+import { Github, Linkedin, Twitter, Mail } from 'lucide-astro';
+import AnimatedLogo from './AnimatedLogo.astro';
+import Logo from './Logo.astro';
+
+const year = new Date().getFullYear();
+
+  const columns = [
+  {
+    title: 'Services',
+    links: [
+      { href: '/services/software-development', label: 'Software Development' },
+      { href: '/services/ai-agents', label: 'AI Agents & Automation' },
+      { href: '/services/infrastructure', label: 'Digital Infrastructure' },
+      { href: '/services/technical-consulting', label: 'Technical Consulting' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { href: '/about', label: 'About' },
+      { href: '/case-studies', label: 'Work' },
+      { href: '/pricing', label: 'Pricing' },
+      { href: '/blog', label: 'Insights' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { href: '/privacy', label: 'Privacy' },
+      { href: '/terms', label: 'Terms' },
+    ],
+  },
+];
+---
+
+<footer class="bg-ink text-white mt-auto">
+  <div class="container-toven py-16">
+
+    <div class="grid md:grid-cols-4 gap-12 mb-12">
+
+      <!-- Brand Column -->
+      <div class="md:col-span-1">
+                                        <a href="/" class="flex items-center gap-2 mb-4 group">
+          <AnimatedLogo class="transition-transform group-hover:scale-105" />
+
+          <span class="font-hero font-bold text-2xl" style="font-family: var(--font-hero);">
+            Toven<span class="text-sky-deep">360°</span>
+          </span>
+        </a>
+                <p class="text-sm text-white/60 mb-6">
+          Intelligent systems. Built to scale.
+        </p>
+        <div class="flex gap-3">
+          <a href="https://github.com" aria-label="GitHub" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+            <Github size={16} />
+          </a>
+          <a href="https://linkedin.com" aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+            <Linkedin size={16} />
+          </a>
+          <a href="https://twitter.com" aria-label="Twitter" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+            <Twitter size={16} />
+          </a>
+          <a href="mailto:hello@toven360.com" aria-label="Email" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+            <Mail size={16} />
+          </a>
+        </div>
+      </div>
+
+      <!-- Link Columns -->
+      {columns.map((col) => (
+        <div>
+          <h4 class="font-display font-semibold text-sm text-white/90 mb-4 tracking-wide uppercase">
+            {col.title}
+          </h4>
+          <ul class="space-y-3">
+            {col.links.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-white/60 hover:text-white transition-colors">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50">
+      <p>© {year} Toven360°. All rights reserved.</p>
+      <p>The Toven Group · Serving clients globally</p>
+    </div>
+
+  </div>
+</footer>

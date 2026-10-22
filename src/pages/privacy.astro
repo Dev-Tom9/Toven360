@@ -1,0 +1,300 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroHeading from '../components/HeroHeading.astro';
+import { statSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+
+const filePath = fileURLToPath(import.meta.url);
+const lastUpdated = new Date(statSync(filePath).mtime).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const sections = [
+  { num: '01', title: 'Introduction', content: 'Toven360° respects your privacy. This Policy explains how we collect, use, and protect information when you visit our site or engage our services.', icon: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>', theme: 'bright' },
+  { num: '02', title: 'Information We Collect', content: 'Contact details, booking information, and anonymized usage data.', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/>', theme: 'cream' },
+  { num: '03', title: 'How We Use It', content: 'Respond to enquiries, run discovery calls, improve our services, and comply with the law.', icon: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>', theme: 'bright' },
+  { num: '04', title: 'Data Sharing', content: 'We never sell your data. Trusted partners only — Cal.com, Formspree, Stripe, Paystack.', icon: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>', theme: 'cream' },
+  { num: '05', title: 'Data Retention', content: 'We keep your information only as long as needed, or as required by law.', icon: '<path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/>', theme: 'bright' },
+  { num: '06', title: 'Your Rights', content: 'Access, correct, delete, or restrict your data.', icon: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>', theme: 'cream' },
+  { num: '07', title: 'Security', content: 'Industry-standard protections. No transmission over the internet is 100% secure.', icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', theme: 'bright' },
+  { num: '08', title: 'Cookies', content: 'We may use cookies to improve your experience. Disable them in your browser if you prefer.', icon: '<circle cx="12" cy="12" r="10"/><circle cx="8" cy="9" r="1.5" fill="currentColor"/><circle cx="15" cy="8" r="1" fill="currentColor"/><circle cx="14" cy="15" r="1.5" fill="currentColor"/><circle cx="9" cy="15" r="1" fill="currentColor"/>', theme: 'cream' },
+  { num: '09', title: 'Policy Changes', content: 'We may update this policy. The date at the top shows the latest revision.', icon: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>', theme: 'bright' },
+  { num: '10', title: 'Contact', content: 'Questions? Reach us at <a href="mailto:thetovengroup@gmail.com" class="underline font-semibold">thetovengroup@gmail.com</a>. We respond within 24 hours.', icon: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>', theme: 'cream' },
+];
+---
+
+<Layout
+  title="Privacy Policy — Toven360°"
+  description="How Toven360° collects, uses, and protects your data."
+>
+
+  <!-- HERO -->
+  <section class="relative gradient-sky pt-10 pb-12 md:pt-14 md:pb-16 overflow-hidden">
+    <div class="container-toven relative z-10">
+      <div class="max-w-3xl">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-6">
+          Legal
+        </p>
+        <HeroHeading
+          before="Our"
+          highlight="Privacy"
+          after="Policy"
+          rotate="right"
+          color="lime"
+          size="lg"
+        />
+        <p class="text-lg text-ink-muted leading-relaxed mt-8">
+          Last updated: {lastUpdated}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCROLL-PINNED HORIZONTAL SECTION -->
+  <section id="scroll-section" class="relative bg-white">
+    <div class="scroll-pin-wrapper">
+      <div class="scroll-pin-inner">
+
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="carousel-track">
+            {sections.map((section, i) => (
+              <div class="carousel-card" style={`--i: ${i};`}>
+                <div class={`carousel-card-inner ${section.theme === 'bright' ? 'carousel-bright' : 'carousel-cream'}`}>
+
+                  <div class={`w-11 h-11 rounded-full flex items-center justify-center mb-5 ${section.theme === 'bright' ? 'bg-white/25 border-2 border-white/60' : 'bg-sky-accent/10 border-2 border-sky-accent/40'}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class={section.theme === 'bright' ? 'text-white' : 'text-sky-accent'} set:html={section.icon} />
+                  </div>
+
+                  <span class={`text-[10px] font-bold uppercase tracking-[0.2em] ${section.theme === 'bright' ? 'text-white/80' : 'text-sky-accent'}`}>
+                    Step {section.num}
+                  </span>
+
+                  <h3 class={`text-lg font-extrabold mt-1 mb-2 leading-[1.15] tracking-tight ${section.theme === 'bright' ? 'text-white' : 'text-ink'}`}>
+                    {section.title}
+                  </h3>
+
+                  <p class={`text-[13px] leading-relaxed ${section.theme === 'bright' ? 'text-white/90' : 'text-ink-muted'} relative z-10`} set:html={section.content} />
+
+                  <!-- BIG GHOST NUMBER — alternating position -->
+                  <span class={`ghost-number ${section.theme === 'bright' ? 'ghost-bright' : 'ghost-cream'} ${i % 2 === 0 ? 'ghost-bottom' : 'ghost-top'}`}>
+                    {section.num}
+                  </span>
+
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-2 mt-8" id="carousel-dots">
+          {sections.map((_, i) => (
+            <span class="carousel-dot w-2 h-2 rounded-full bg-sky-light transition-all duration-500" data-index={i}></span>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  #scroll-section {
+    position: relative;
+    height: 500vh;
+  }
+
+  .scroll-pin-wrapper {
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .scroll-pin-inner {
+    width: 100%;
+  }
+
+  .carousel-viewport {
+    overflow: visible;
+    padding: 0 24px;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 32px;
+    width: max-content;
+    will-change: transform;
+    transform: translateX(0);
+  }
+
+  .carousel-card {
+    flex-shrink: 0;
+    width: 240px;
+  }
+
+  @media (min-width: 640px) {
+    .carousel-card { width: 260px; }
+  }
+
+  @media (min-width: 1024px) {
+    .carousel-card { width: 280px; }
+  }
+
+  .carousel-card-inner {
+    border-radius: 1.75rem;
+    padding: 1.75rem;
+    box-shadow: 0 15px 45px -15px rgba(10, 14, 26, 0.12);
+    animation: float-card 5s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.25s);
+    height: 100%;
+    position: relative;
+    /* Clip the ghost number to the card, but allow the whole card to float freely */
+    overflow: hidden;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    /* Ensure the box-shadow doesn't get clipped */
+    isolation: isolate;
+  }
+
+  .carousel-bright {
+    background: linear-gradient(135deg, #6bb6e8 0%, #3a8fd4 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 45px -15px rgba(58, 143, 212, 0.35);
+  }
+
+  .carousel-cream {
+    background-color: #f7f9fc;
+    border: 1px solid rgba(229, 234, 240, 0.8);
+  }
+
+  /* BIG GHOST NUMBER */
+  .ghost-number {
+    position: absolute;
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: 120px;
+    line-height: 0.85;
+    letter-spacing: -0.06em;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  /* Position: bottom-right */
+  .ghost-bottom {
+    bottom: -24px;
+    right: -8px;
+  }
+
+  /* Position: top-right */
+  .ghost-top {
+    top: -24px;
+    right: -8px;
+  }
+
+  .ghost-bright {
+    color: rgba(255, 255, 255, 0.22);
+  }
+
+  .ghost-cream {
+    color: rgba(10, 14, 26, 0.08);
+  }
+
+  @keyframes float-card {
+    0%, 100% { transform: translateY(0px) rotate(-0.4deg); }
+    50% { transform: translateY(-8px) rotate(0.4deg); }
+  }
+
+  .carousel-dot.active {
+    background-color: #3a8fd4;
+    width: 24px;
+  }
+</style>
+
+<script>
+  const section = document.getElementById('scroll-section');
+  const track = document.getElementById('carousel-track');
+  const dots = document.querySelectorAll('.carousel-dot');
+
+  let targetX = 0;
+  let currentX = 0;
+  let rafId: number | null = null;
+
+  const computeTarget = () => {
+    if (!section || !track) return;
+
+    // Force layout read (avoids stale dimensions from earlier render)
+    const sectionRect = section.getBoundingClientRect();
+    const sectionHeight = section.offsetHeight;
+    const windowHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    const trackWidth = track.scrollWidth;
+
+    const scrollable = sectionHeight - windowHeight;
+    const scrolled = Math.max(0, Math.min(scrollable, -sectionRect.top));
+    const progress = scrollable > 0 ? scrolled / scrollable : 0;
+
+    const maxShift = Math.max(0, trackWidth - viewportWidth + 48);
+    targetX = -progress * maxShift;
+
+    const activeIndex = Math.round(progress * (dots.length - 1));
+    dots.forEach((dot, i) => {
+      if (i === activeIndex) dot.classList.add('active');
+      else dot.classList.remove('active');
+    });
+  };
+
+  const animate = () => {
+    currentX += (targetX - currentX) * 0.08;
+    if (track) {
+      track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+    }
+    rafId = requestAnimationFrame(animate);
+  };
+
+  // Recompute on every relevant event
+  const recompute = () => {
+    computeTarget();
+    // Snap current to target on recompute to avoid visible catch-up
+    if (Math.abs(currentX - targetX) > 200) {
+      currentX = targetX;
+    }
+  };
+
+  window.addEventListener('scroll', computeTarget, { passive: true });
+  window.addEventListener('resize', recompute);
+
+  // Recompute after fonts load (fixes first-load issue where custom fonts shift layout)
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(recompute);
+  }
+
+  // Recompute after all images load
+  window.addEventListener('load', recompute);
+
+  // Recompute when the section itself resizes
+  if (section && 'ResizeObserver' in window) {
+    const ro = new ResizeObserver(() => computeTarget());
+    ro.observe(section);
+  }
+
+  // Recompute after Swup navigations (in case we arrive via client-side routing)
+  document.addEventListener('swup:contentReplaced', () => setTimeout(recompute, 100));
+  document.addEventListener('swup:page:view', () => setTimeout(recompute, 100));
+  document.addEventListener('astro:page-load', () => setTimeout(recompute, 100));
+
+  // Initial
+  computeTarget();
+  currentX = targetX;
+  animate();
+
+  // Extra safety: recompute again after 500ms and 1.5s (covers slow layout shifts)
+  setTimeout(recompute, 500);
+  setTimeout(recompute, 1500);
+</script>

@@ -1,0 +1,252 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const deliverables = [
+  {
+    title: 'Architecture Reviews',
+    description: 'Deep-dive audits of your current systems with concrete, prioritized recommendations.',
+    icon: '<path d="M9 11H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-4"/><path d="M12 2v14"/><path d="m8 6 4-4 4 4"/>',
+  },
+  {
+    title: 'Technical Due Diligence',
+    description: 'Independent engineering assessment for investors, acquisitions, or partnerships.',
+    icon: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 7v4"/><path d="M11 15h.01"/>',
+  },
+  {
+    title: 'Team Mentoring',
+    description: 'Upskill your engineers with senior guidance on architecture, code quality, and delivery.',
+    icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  },
+  {
+    title: 'Technology Selection',
+    description: 'Honest, vendor-neutral guidance on stacks, tools, and platforms that fit your goals.',
+    icon: '<polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/>',
+  },
+  {
+    title: 'Scaling & Performance',
+    description: 'Find the bottlenecks. Fix them. Keep your systems fast as you grow.',
+    icon: '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+  },
+  {
+    title: 'Fractional Leadership',
+    description: 'Senior engineering leadership on a flexible basis — without a full-time hire.',
+    icon: '<path d="M12 2 4 7v10l8 5 8-5V7z"/><path d="M12 22V12"/><path d="m4 7 8 5 8-5"/>',
+  },
+];
+
+const process = [
+  { step: '01', title: 'Understand', description: 'Listen first. Understand your systems, goals, and constraints.' },
+  { step: '02', title: 'Assess', description: 'Audit, interview, and review. Find what actually matters.' },
+  { step: '03', title: 'Recommend', description: 'Concrete, prioritized actions. No vague decks.' },
+  { step: '04', title: 'Support', description: 'Stay involved through execution — or hand off cleanly.' },
+];
+
+const engagements = [
+  { title: 'Architecture Audit', duration: '2 to 4 weeks', description: 'Full review of your systems with a written report and roadmap.' },
+  { title: 'Fractional CTO', duration: 'Ongoing', description: 'Senior engineering leadership for teams that need direction.' },
+  { title: 'Due Diligence', duration: '1 to 2 weeks', description: 'Independent technical assessment for investment or acquisition.' },
+  { title: 'Team Mentoring', duration: 'Monthly', description: 'Regular sessions with your engineers to level up delivery and quality.' },
+];
+
+const why = [
+  { title: 'Engineering-led', description: 'Every engagement is led by practicing senior engineers — not consultants who stopped building years ago.' },
+  { title: 'Vendor-neutral', description: 'We recommend what is right for your business, not what pays us a commission.' },
+  { title: 'Written deliverables', description: 'Clear reports, roadmaps, and recommendations you can actually act on.' },
+  { title: 'Enterprise discipline', description: 'IBM Solution Architect rigor applied to every review, roadmap, and recommendation.' },
+];
+---
+
+<Layout
+  title="Technical Consulting — Toven360°"
+  description="Senior engineering guidance for teams worldwide. Architecture reviews, technical due diligence, team mentoring, and fractional leadership — led by practicing senior engineers."
+>
+
+  <!-- HERO -->
+  <section class="relative gradient-sky pt-10 pb-12 md:pt-14 md:pb-16 overflow-hidden">
+    <div class="container-toven relative z-10">
+      <div class="max-w-4xl">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-6">
+          Service · Technical Consulting
+        </p>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-ink mb-8 leading-[1.05] tracking-tight" style="font-family: var(--font-hero);">
+          Senior guidance.<br />
+          <span class="text-gradient">No noise.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed mb-10">
+          Architecture reviews, technical due diligence, and strategic guidance — delivered by practicing senior engineers.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-ink text-white font-semibold hover:bg-ink-soft transition-colors">
+            Book a consultation
+          </a>
+          <a href="/services" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-ink font-semibold border border-border hover:border-ink transition-colors">
+            ← All services
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="py-24 bg-white">
+    <div class="container-toven">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-5">
+          <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+            The approach
+          </p>
+          <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+            Real engineers.<br />
+            <span class="text-ink-subtle">Real answers.</span>
+          </h2>
+        </div>
+        <div class="lg:col-span-7">
+          <p class="text-lg text-ink-muted leading-relaxed mb-6">
+            Most consulting firms send junior analysts with slide decks. We send senior engineers who have built and operated systems at scale — and can prove it.
+          </p>
+          <p class="text-lg text-ink-muted leading-relaxed">
+            Whether you need a one-time architecture review or ongoing fractional leadership, you get direct access to senior engineering talent. No layers. No account managers. No filler.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES -->
+  <section class="relative py-32 bg-surface-soft overflow-hidden">
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-ink/5 blur-3xl pointer-events-none"></div>
+
+    <div class="container-toven relative">
+      <div class="max-w-3xl mb-16">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          What you get
+        </p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          Sharp thinking.<br />
+          <span class="text-ink-subtle">Actionable output.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {deliverables.map((item) => (
+          <div class="group p-8 rounded-[2rem] bg-white border border-border/60 hover:border-transparent hover:shadow-[0_20px_60px_-15px_rgba(10,14,26,0.12)] transition-all duration-500">
+            <div class="w-12 h-12 rounded-xl bg-ink/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="text-ink" set:html={item.icon} />
+            </div>
+            <h3 class="text-lg font-bold text-ink mb-3 tracking-tight">{item.title}</h3>
+            <p class="text-sm text-ink-muted leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGAGEMENT MODELS -->
+  <section class="py-32 bg-white">
+    <div class="container-toven">
+      <div class="max-w-3xl mb-16">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          Ways to engage
+        </p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          Flexible formats.<br />
+          <span class="text-ink-subtle">Senior-level only.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {engagements.map((item) => (
+          <div class="group p-10 rounded-[2rem] border border-border/60 bg-surface-soft hover:border-transparent hover:shadow-[0_20px_60px_-15px_rgba(10,14,26,0.12)] transition-all duration-500">
+            <div class="flex items-start justify-between mb-6">
+              <h3 class="text-2xl font-bold text-ink tracking-tight">{item.title}</h3>
+              <span class="text-xs font-semibold text-sky-accent uppercase tracking-wider px-3 py-1.5 rounded-full bg-sky-accent/10">
+                {item.duration}
+              </span>
+            </div>
+            <p class="text-ink-muted leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY TOVEN360 -->
+  <section class="py-32 bg-surface-soft">
+    <div class="container-toven">
+      <div class="max-w-3xl mb-20">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          Why Toven360°
+        </p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          Different by design.<br />
+          <span class="text-ink-subtle">Not by marketing.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {why.map((item) => (
+          <div class="p-10 rounded-[2rem] bg-white border border-border/60">
+            <h3 class="text-xl font-bold text-ink mb-4 tracking-tight">{item.title}</h3>
+            <p class="text-ink-muted leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="py-32 bg-white">
+    <div class="container-toven">
+      <div class="max-w-3xl mb-20">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          How we work
+        </p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          Listen.<br />
+          <span class="text-ink-subtle">Then deliver.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {process.map((item, i) => {
+          const numberColors = [
+            'text-sky-accent/40',
+            'text-yellow-500/40',
+            'text-sky-deep/40',
+            'text-red-500/40',
+          ];
+          return (
+            <div class="relative">
+              <div class={`text-6xl md:text-7xl font-extrabold mb-4 leading-none ${numberColors[i]}`} style="font-family: var(--font-hero);">
+                {item.step}
+              </div>
+              <h3 class="text-xl font-bold text-ink mb-3 tracking-tight">{item.title}</h3>
+              <p class="text-sm text-ink-muted leading-relaxed">{item.description}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-white">
+    <div class="container-toven">
+      <div class="relative rounded-[2.5rem] bg-gradient-sky overflow-hidden p-12 md:p-20 text-center">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-white/40 blur-3xl pointer-events-none"></div>
+        <div class="relative">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-ink mb-6 leading-[1.05] tracking-tight">
+            Need a senior engineer to look at it?
+          </h2>
+          <p class="text-lg text-ink-muted max-w-xl mx-auto mb-10">
+            Book a consultation. Bring your hardest problem. We will give you a straight answer.
+          </p>
+          <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-ink text-white font-semibold hover:bg-ink-soft transition-colors">
+            Book a consultation →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

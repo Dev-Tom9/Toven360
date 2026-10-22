@@ -1,0 +1,309 @@
+@import "tailwindcss";
+
+@import "@fontsource/bricolage-grotesque/600.css";
+@import "@fontsource/bricolage-grotesque/700.css";
+@import "@fontsource/bricolage-grotesque/800.css";
+
+/* Montserrat — Display / Headings */
+@import "@fontsource/montserrat/400.css";
+@import "@fontsource/montserrat/500.css";
+@import "@fontsource/montserrat/600.css";
+@import "@fontsource/montserrat/700.css";
+@import "@fontsource/montserrat/800.css";
+
+/* Inter — Body */
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+
+/* ============================================
+   Toven360° — Design Tokens
+   ============================================ */
+
+@theme {
+  --color-sky-light: #e8f4fd;
+  --color-sky-mid: #b8dcf5;
+  --color-sky-deep: #6bb6e8;
+  --color-sky-accent: #3a8fd4;
+
+  --color-lime: #e8f55b;
+  --color-lime-hover: #d9e647;
+
+  --color-ink: #0a0e1a;
+  --color-ink-soft: #1a1f2e;
+  --color-ink-muted: #4a5266;
+  --color-ink-subtle: #8892a6;
+
+  --color-surface: #ffffff;
+  --color-surface-soft: #f7f9fc;
+  --color-border: #e5eaf0;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Montserrat", system-ui, -apple-system, sans-serif;
+  --font-hero: "Bricolage Grotesque", system-ui, sans-serif;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background-color: var(--color-surface);
+    line-height: 1.6;
+  }
+
+   h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-hero);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  ::selection {
+    background-color: var(--color-lime);
+    color: var(--color-ink);
+  }
+}
+
+/* ============================================
+   Custom Utilities
+   ============================================ */
+
+@layer utilities {
+  .container-toven {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .gradient-sky {
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #e8f4fd 40%,
+      #b8dcf5 100%
+    );
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #0a0e1a 0%, #3a8fd4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* ============================================
+   Scroll Reveal
+   ============================================ */
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Page Transitions (Swup fade) — slower
+   ============================================ */
+
+html.is-changing .transition-main {
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.is-animating .transition-main {
+  opacity: 0;
+}
+
+html.is-rendering .transition-main {
+  opacity: 0;
+}
+
+.transition-main {
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
+}
+/* ============================================
+   Respect reduced motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll,
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .transition-main {
+    transition: none !important;
+    opacity: 1 !important;
+  }
+}
+/* ============================================
+   Article Prose Styles
+   ============================================ */
+
+.prose-toven h2 {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.prose-toven h3 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-top: 2.25rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.prose-toven p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--color-ink-muted);
+  margin-bottom: 1.5rem;
+}
+
+.prose-toven strong {
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+.prose-toven em {
+  font-style: italic;
+}
+
+.prose-toven a {
+  color: var(--color-sky-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.prose-toven a:hover {
+  color: var(--color-ink);
+}
+
+.prose-toven ul,
+.prose-toven ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.prose-toven ul li {
+  list-style: disc;
+  margin-bottom: 0.75rem;
+  line-height: 1.75;
+  color: var(--color-ink-muted);
+}
+
+.prose-toven ol li {
+  list-style: decimal;
+  margin-bottom: 0.75rem;
+  line-height: 1.75;
+  color: var(--color-ink-muted);
+}
+
+.prose-toven blockquote {
+  border-left: 3px solid var(--color-lime);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--color-ink-muted);
+}
+
+.prose-toven code {
+  background: var(--color-surface-soft);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  color: var(--color-ink);
+}
+
+.prose-toven pre {
+  background: var(--color-ink);
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.prose-toven pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.prose-toven hr {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: 3rem 0;
+}
+
+.prose-toven > p:first-child {
+  font-size: 1.25rem;
+  color: var(--color-ink-muted);
+  line-height: 1.7;
+}

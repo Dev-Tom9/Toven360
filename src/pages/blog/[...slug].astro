@@ -1,0 +1,233 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts
+    .filter((post) => post.id && post.id.length > 0)
+    .map((post) => ({
+      params: { slug: post.id },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const words = post.body ? post.body.split(/\s+/).length : 0;
+const minutes = Math.max(1, Math.round(words / 200));
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const related = allPosts
+  .filter((p: any) => p.id !== post.id)
+  .map((p: any) => ({
+    post: p,
+    score: p.data.tags.filter((t: string) => post.data.tags.includes(t)).length,
+  }))
+  .sort((a: any, b: any) => b.score - a.score)
+  .slice(0, 3)
+  .map((r: any) => r.post);
+
+const formattedDate = post.data.date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const site = 'https://toven360.com';
+const canonicalURL = new URL(`/blog/${post.id}`, site).toString();
+const ogImageURL = post.data.cover
+  ? new URL(post.data.cover, site).toString()
+  : new URL(`/og/${post.id}`, site).toString();
+const publishedISO = post.data.date.toISOString();
+const modifiedISO = new Date().toISOString();
+
+const blogPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "image": ogImageURL,
+  "datePublished": publishedISO,
+  "dateModified": modifiedISO,
+  "author": { "@type": "Person", "name": post.data.author, "url": site },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Toven360°",
+    "url": site,
+    "logo": { "@type": "ImageObject", "url": `${site}/favicon.svg` }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalURL },
+  "keywords": post.data.tags.join(', '),
+  "articleSection": post.data.category,
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": site },
+    { "@type": "ListItem", "position": 2, "name": "Insights", "item": `${site}/blog` },
+    { "@type": "ListItem", "position": 3, "name": post.data.title, "item": canonicalURL },
+  ],
+};
+---
+
+<Layout
+  title={`${post.data.title} — Toven360°`}
+  description={post.data.description}
+  image={ogImageURL}
+>
+
+  <Fragment slot="head">
+    <meta property="article:published_time" content={publishedISO} />
+    <meta property="article:modified_time" content={modifiedISO} />
+    <meta property="article:section" content={post.data.category} />
+    {post.data.tags.map((tag: string) => (
+      <meta property="article:tag" content={tag} />
+    ))}
+    <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="relative gradient-sky pt-10 pb-10 md:pt-14 md:pb-12 overflow-hidden">
+    <div class="container-toven relative z-10">
+      <div class="max-w-3xl mx-auto">
+
+        <a href="/blog" class="inline-flex items-center gap-2 text-sm font-semibold text-ink-muted hover:text-ink transition-colors mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
+          </svg>
+          All insights
+        </a>
+
+        <div class="flex items-center gap-4 mb-6">
+          <span class="text-xs font-semibold text-sky-accent uppercase tracking-widest px-3 py-1.5 rounded-full bg-sky-accent/10">
+            {post.data.category}
+          </span>
+          <span class="text-xs text-ink-subtle">{minutes} min read</span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink mb-8 leading-[1.1] tracking-tight">
+          {post.data.title}
+        </h1>
+
+        <p class="text-lg md:text-xl text-ink-muted leading-relaxed mb-8">
+          {post.data.description}
+        </p>
+
+        <div class="flex items-center gap-4 pt-8 border-t border-border">
+          <div class="w-11 h-11 rounded-full bg-ink flex items-center justify-center text-white font-bold text-sm">
+            TS
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-ink">{post.data.author}</p>
+            <time datetime={publishedISO} class="text-xs text-ink-subtle">{formattedDate}</time>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COVER IMAGE -->
+  {post.data.cover && (
+    <section class="pt-4 pb-8 bg-white">
+      <div class="container-toven">
+        <div class="max-w-4xl mx-auto">
+          <div class="aspect-[16/9] rounded-[2rem] overflow-hidden bg-ink">
+            <img
+              src={post.data.cover}
+              alt={post.data.coverAlt || post.data.title}
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ARTICLE -->
+  <section class="py-10 bg-white">
+    <div class="container-toven">
+      <article class="prose-toven max-w-3xl mx-auto">
+        <Content />
+      </article>
+    </div>
+  </section>
+
+  <!-- TAGS -->
+  {post.data.tags.length > 0 && (
+    <section class="pb-16 bg-white">
+      <div class="container-toven">
+        <div class="max-w-3xl mx-auto pt-8 border-t border-border">
+          <p class="text-xs font-semibold text-ink-subtle uppercase tracking-widest mb-4">Tags</p>
+          <div class="flex flex-wrap gap-2">
+            {post.data.tags.map((tag: string) => (
+              <span class="px-4 py-2 rounded-full bg-surface-soft border border-border text-sm text-ink-muted">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- RELATED -->
+  {related.length > 0 && (
+    <section class="py-24 bg-surface-soft">
+      <div class="container-toven">
+        <div class="max-w-3xl mx-auto">
+          <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+            Related reading
+          </p>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-ink mb-10 leading-[1.1] tracking-tight">
+            More from the team.
+          </h2>
+          <div class="space-y-4">
+            {related.map((r: any) => (
+              <a href={`/blog/${r.id}`} class="group block p-6 rounded-2xl bg-white border border-border/60 hover:border-transparent hover:shadow-[0_20px_60px_-15px_rgba(10,14,26,0.12)] transition-all duration-500">
+                <div class="flex items-center justify-between gap-6">
+                  <div>
+                    <p class="text-xs font-semibold text-sky-accent uppercase tracking-widest mb-2">
+                      {r.data.category}
+                    </p>
+                    <h3 class="text-lg font-bold text-ink tracking-tight">{r.data.title}</h3>
+                  </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink-subtle group-hover:text-ink group-hover:translate-x-1 transition-all flex-shrink-0">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="py-24 bg-white">
+    <div class="container-toven">
+      <div class="relative rounded-[2.5rem] bg-gradient-sky overflow-hidden p-12 md:p-20 text-center">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-white/40 blur-3xl pointer-events-none"></div>
+        <div class="relative">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-ink mb-6 leading-[1.05] tracking-tight">
+            Ready to build?
+          </h2>
+          <p class="text-lg text-ink-muted max-w-xl mx-auto mb-10">
+            Talk to the engineer who will lead your project. No sales layer.
+          </p>
+          <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-ink text-white font-semibold hover:bg-ink-soft transition-colors">
+            Book a discovery call →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

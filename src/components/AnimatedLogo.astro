@@ -1,0 +1,74 @@
+---
+interface Props {
+  class?: string;
+  size?: string;
+}
+
+const {
+  class: className = '',
+  size = 'w-16 h-16',
+} = Astro.props;
+
+const logos = [
+  '/logos/logo-1.jpeg',
+  '/logos/logo-2.jpeg',
+  '/logos/logo-3.jpeg',
+];
+---
+
+<span class={`animated-logo relative inline-block ${size} rounded-full overflow-hidden ${className}`}>
+  {logos.map((src, i) => (
+    <img
+      src={src}
+      alt="Toven360°"
+      class={`animated-logo-img absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+      data-logo-index={i}
+      loading="eager"
+    />
+  ))}
+</span>
+
+<style>
+  .animated-logo-img {
+    will-change: opacity;
+  }
+</style>
+
+<script>
+  function initAnimatedLogo() {
+    const wrappers = document.querySelectorAll('.animated-logo');
+    if (!wrappers.length) return;
+
+    wrappers.forEach((wrapper) => {
+      if ((wrapper as any)._logoBound) return;
+      (wrapper as any)._logoBound = true;
+
+      const imgs = wrapper.querySelectorAll('.animated-logo-img');
+      if (imgs.length < 2) return;
+
+      let current = 0;
+      setInterval(() => {
+        imgs.forEach((img, i) => {
+          if (i === current) {
+            img.classList.remove('opacity-100');
+            img.classList.add('opacity-0');
+          }
+        });
+
+        current = (current + 1) % imgs.length;
+
+        imgs.forEach((img, i) => {
+          if (i === current) {
+            img.classList.remove('opacity-0');
+            img.classList.add('opacity-100');
+          }
+        });
+      }, 3000);
+    });
+  }
+
+  initAnimatedLogo();
+  document.addEventListener('swup:contentReplaced', () => setTimeout(initAnimatedLogo, 100));
+  document.addEventListener('swup:page:view', () => setTimeout(initAnimatedLogo, 100));
+  document.addEventListener('astro:page-load', () => setTimeout(initAnimatedLogo, 100));
+</script>

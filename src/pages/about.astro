@@ -1,0 +1,327 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroHeading from '../components/HeroHeading.astro';
+
+const board = [
+  { name: 'Josiah Otene', role: 'Software Engineer', title: 'Co-founder, Toven360°', monogram: 'JO' },
+  { name: 'Freedom Henshaw', role: 'UI/UX Designer', title: 'Design Lead', monogram: 'FH' },
+  { name: 'Victoria', role: 'Advertising & Media Specialist', title: 'Board Member', monogram: 'V' },
+  { name: 'Kelvin', role: 'Full-Stack Developer', title: 'Board Member', monogram: 'K' },
+];
+
+const pillars = [
+  { title: 'Engineering-led delivery', description: 'Every engagement is led by practicing senior engineers. No account managers. No handoffs. No dilution.' },
+  { title: 'Enterprise-grade architecture', description: 'IBM Solution Architect discipline applied to every system we design, build, and ship.' },
+  { title: 'AI that ships', description: 'From agent design to production rollout — we build AI that works in the real world, not in demos.' },
+  { title: 'Global delivery', description: 'Serving clients across timezones with clear communication and reliable overlap hours.' },
+  { title: 'Full-stack ownership', description: 'Backend, AI, and infrastructure — handled under one roof, by one accountable team.' },
+  { title: 'Long-term thinking', description: 'Systems built to last. Documented, tested, and maintainable years after launch.' },
+];
+
+const values = [
+  { label: 'Clarity', description: 'We say what we mean. No jargon, no filler, no theatre.', color: 'text-sky-accent' },
+  { label: 'Craft', description: 'We sweat the details — because that is where reliability lives.', color: 'text-yellow-500' },
+  { label: 'Candor', description: 'If AI will not help you, we say so. Honest guidance beats a quick sale.', color: 'text-sky-deep' },
+  { label: 'Ownership', description: 'We take responsibility for outcomes, not just deliverables.', color: 'text-red-500' },
+];
+
+const presence = [
+  { region: 'Americas', hours: 'EST · PST overlap', label: 'North & South America', flagSvg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><g fill="#b22234"><rect width="60" height="3.08" y="0"/><rect width="60" height="3.08" y="6.15"/><rect width="60" height="3.08" y="12.31"/><rect width="60" height="3.08" y="18.46"/><rect width="60" height="3.08" y="24.62"/><rect width="60" height="3.08" y="30.77"/><rect width="60" height="3.08" y="36.92"/></g><rect width="24" height="21.54" fill="#3c3b6e"/></svg>` },
+  { region: 'Europe', hours: 'GMT · CET overlap', label: 'UK & European Union', flagSvg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#003399"/><g fill="#ffcc00"><circle cx="30" cy="20" r="2"/><circle cx="30" cy="8" r="1.2"/><circle cx="30" cy="32" r="1.2"/><circle cx="18" cy="20" r="1.2"/><circle cx="42" cy="20" r="1.2"/><circle cx="21.5" cy="11.5" r="1.2"/><circle cx="38.5" cy="11.5" r="1.2"/><circle cx="21.5" cy="28.5" r="1.2"/><circle cx="38.5" cy="28.5" r="1.2"/><circle cx="22" cy="14" r="1.2"/><circle cx="38" cy="26" r="1.2"/><circle cx="38" cy="14" r="1.2"/><circle cx="22" cy="26" r="1.2"/></g></svg>` },
+  { region: 'Middle East', hours: 'GST · AST overlap', label: 'UAE, KSA & Gulf', flagSvg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#00732f"/><rect width="60" height="13.33" y="13.33" fill="#fff"/><rect width="60" height="13.33" y="26.66" fill="#000"/><rect width="15" height="40" fill="#ff0000"/></svg>` },
+  { region: 'Africa', hours: 'WAT · SAST overlap', label: 'Nigeria & Southern Africa', flagSvg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="20" height="40" fill="#008751"/><rect width="20" height="40" x="20" fill="#fff"/><rect width="20" height="40" x="40" fill="#008751"/></svg>` },
+];
+---
+
+<Layout
+  title="About — Toven360°"
+  description="Toven360° is a software development, AI consulting, and digital infrastructure firm serving clients worldwide. Founded by Tomiwa Samuel O. — known as The Forge."
+>
+
+  <!-- HERO -->
+  <section class="relative gradient-sky pt-10 pb-12 md:pt-14 md:pb-16 overflow-hidden">
+    <div class="container-toven relative z-10">
+      <div class="max-w-4xl">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-6">
+          About Toven360°
+        </p>
+        <HeroHeading
+          before="Engineering"
+          highlight="intelligence"
+          after="into every layer."
+          rotate="right"
+          color="lime"
+          size="lg"
+          class="mb-8"
+        />
+        <p class="text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed">
+          Toven360° is a software development, AI consulting, and digital infrastructure firm serving clients worldwide. Built on senior engineering, enterprise discipline, and honest delivery.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPANY INTRODUCTION -->
+  <section class="relative py-24 bg-white overflow-hidden">
+    <div class="absolute top-0 left-0 w-[600px] h-[600px] rounded-full bg-sky-light/40 blur-3xl pointer-events-none"></div>
+
+    <div class="container-toven relative">
+      <div class="grid lg:grid-cols-12 gap-16 items-start">
+
+        <!-- Left: label + heading -->
+        <div class="lg:col-span-5 lg:sticky lg:top-32">
+          <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+            Our Story
+          </p>
+          <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight mb-6">
+            Founded on<br />
+            <span class="text-ink-subtle">engineering truth.</span>
+          </h2>
+          <p class="text-lg text-ink-muted leading-relaxed">
+            From a single desk in Nigeria to clients across four continents — Toven360° is what happens when serious engineering meets honest delivery.
+          </p>
+        </div>
+
+        <!-- Right: story paragraphs -->
+        <div class="lg:col-span-7 space-y-6">
+
+          <p class="text-lg text-ink-muted leading-relaxed">
+            <strong class="text-ink font-bold">Toven360° was founded in 2021</strong> with a simple but stubborn belief: that software and AI consulting should be led by engineers who actually build systems, not by sales teams who sell them. Since then, we've delivered production software, AI agents, and cloud infrastructure for clients across <strong class="text-ink font-bold">North America, Europe, the Middle East, and Africa.</strong> Some of them are high-growth startups, others enterprise teams solving hard infrastructure problems.
+          </p>
+
+          <p class="text-lg text-ink-muted leading-relaxed">
+            The company is founded by <strong class="text-ink font-bold">Tomiwa Samuel O.</strong> — known across the industry as <strong class="text-ink font-bold">The Forge</strong>. The name stuck because of what he does best: <em>taking raw materials — ideas, constraints, deadlines, complexity — and forging them into systems that hold under heat and pressure.</em> Where most people see chaos, The Forge sees structure waiting to be formed.
+          </p>
+
+          <p class="text-lg text-ink-muted leading-relaxed">
+            That same philosophy runs through every engagement at Toven360°. We don't ship fragile demos. We forge production-grade systems designed to survive launch day, and to keep performing long after. Backend, AI, infrastructure, built to hold.
+          </p>
+
+          <!-- The Forge callout -->
+          <div class="mt-8 p-8 rounded-[2rem] bg-ink text-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-[300px] h-[300px] rounded-full bg-lime/10 blur-3xl pointer-events-none"></div>
+            <div class="relative">
+              <p class="text-xs font-semibold text-lime uppercase tracking-[0.25em] mb-4">
+                Founder
+              </p>
+              <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-2 tracking-tight" style="font-family: var(--font-hero);">
+                Tomiwa Samuel O.
+              </h3>
+              <p class="text-lg text-lime font-semibold mb-4">
+                Known as — The Forge
+              </p>
+              <p class="text-white/70 leading-relaxed">
+                Founder & Principal Engineer · IBM Solution Architect. Builder of production systems across healthtech (healthcare), fintech (insurance), AI recruitment, and enterprise automation. The Forge builds architectures that survive.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BOARD OF TRUSTEES -->
+  <section class="relative py-32 bg-surface-soft overflow-hidden">
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-sky-light/40 blur-3xl pointer-events-none"></div>
+
+    <div class="container-toven relative">
+
+      <div class="max-w-3xl mb-20">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          The people behind Toven360°
+        </p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          The Toven Group<br />
+          <span class="text-ink-subtle">Board of Trustees.</span>
+        </h2>
+        <p class="text-lg text-ink-muted mt-6 max-w-2xl leading-relaxed">
+          One founder. Four board members. One standard — steering the engineering, brand, and direction of Toven360°.
+        </p>
+      </div>
+
+      <!-- FOUNDER (top, centered, big) -->
+      <div class="flex flex-col items-center text-center mb-24">
+        <div class="relative">
+          <div class="w-48 h-48 md:w-56 md:h-56 rounded-full bg-white border-4 border-lime shadow-[0_30px_80px_-20px_rgba(10,14,26,0.25)] flex items-center justify-center overflow-hidden">
+            <span class="font-extrabold text-6xl md:text-7xl text-ink tracking-tight" style="font-family: var(--font-hero);">
+              TOS
+            </span>
+          </div>
+          <span class="absolute bottom-3 right-3 w-6 h-6 rounded-full bg-lime border-4 border-white"></span>
+        </div>
+
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.25em] mt-8 mb-3">
+          Founder, Toven360°
+        </p>
+        <h3 class="text-3xl md:text-4xl font-extrabold text-ink tracking-tight mb-3" style="font-family: var(--font-hero);">
+          Tomiwa Samuel O.
+        </h3>
+        <p class="text-base text-ink-muted max-w-lg">
+          Founder & Principal Engineer · IBM Solution Architect · <span class="text-lime font-semibold">The Forge</span>
+        </p>
+      </div>
+
+      <!-- 4 BOARD MEMBERS IN A ROW -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {board.map((member) => (
+          <div class="group flex flex-col items-center text-center p-8 rounded-[2rem] bg-white border border-border/60 hover:border-transparent hover:shadow-[0_20px_60px_-15px_rgba(10,14,26,0.15)] hover:-translate-y-1 transition-all duration-500">
+
+            <div class="w-28 h-28 rounded-full bg-white border border-border flex items-center justify-center overflow-hidden mb-6 group-hover:scale-105 transition-transform duration-500">
+              <span class="font-extrabold text-2xl text-ink tracking-tight" style="font-family: var(--font-hero);">
+                {member.monogram}
+              </span>
+            </div>
+
+            <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-2">
+              {member.title}
+            </p>
+            <h3 class="text-xl font-extrabold text-ink tracking-tight mb-1" style="font-family: var(--font-hero);">
+              {member.name}
+            </h3>
+            <p class="text-sm text-ink-muted">
+              {member.role}
+            </p>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="py-32 bg-white">
+    <div class="container-toven">
+      <div class="max-w-4xl">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          Mission
+        </p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink leading-[1.1] tracking-tight mb-10">
+          We build the systems that run<br />
+          <span class="text-ink-subtle">intelligent businesses.</span>
+        </h2>
+        <p class="text-xl text-ink-muted leading-relaxed">
+          AI agents, backend systems, and digital infrastructure — engineered with the discipline of enterprise architecture and the speed of modern delivery. For clients who need it done right, not just done fast.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY TOVEN360 -->
+  <section class="py-32 bg-surface-soft">
+    <div class="container-toven">
+      <div class="max-w-3xl mb-16">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          Why Toven360°
+        </p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          Different by design.<br />
+          <span class="text-ink-subtle">Not by marketing.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {pillars.map((item) => (
+          <div class="group p-8 rounded-[2rem] bg-white border border-border/60 hover:border-transparent hover:shadow-[0_20px_60px_-15px_rgba(10,14,26,0.12)] transition-all duration-500">
+            <div class="w-10 h-10 rounded-xl bg-sky-accent/15 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-accent"></span>
+            </div>
+            <h3 class="text-lg font-bold text-ink mb-3 tracking-tight">{item.title}</h3>
+            <p class="text-sm text-ink-muted leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="relative py-32 bg-white overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-sky-light/50 blur-3xl pointer-events-none"></div>
+
+    <div class="container-toven relative">
+
+      <div class="max-w-3xl mb-20">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          Values
+        </p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          Four words<br />
+          <span class="text-ink-subtle">we live by.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {values.map((item, i) => (
+          <div class="group relative p-10 lg:p-12 rounded-[2.5rem] bg-surface-soft border border-border/60 hover:border-transparent hover:shadow-[0_30px_80px_-20px_rgba(10,14,26,0.18)] hover:-translate-y-2 transition-all duration-500 overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition-opacity duration-700 bg-gradient-to-br from-sky-light to-sky-mid"></div>
+            <div class={`absolute top-8 right-10 text-[120px] leading-none font-extrabold ${item.color} opacity-25 select-none pointer-events-none`} style="font-family: var(--font-hero);">
+              0{i + 1}
+            </div>
+            <div class="relative">
+              <div class="w-12 h-1 bg-lime rounded-full mb-8 group-hover:w-20 transition-all duration-500"></div>
+              <h3 class="text-4xl lg:text-5xl font-extrabold text-ink mb-4 tracking-tight">
+                {item.label}
+              </h3>
+              <p class="text-lg text-ink-muted leading-relaxed max-w-md">
+                {item.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GLOBAL PRESENCE -->
+  <section class="py-32 bg-surface-soft">
+    <div class="container-toven">
+      <div class="max-w-3xl mb-16">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          Global presence
+        </p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          Serving clients<br />
+          <span class="text-ink-subtle">across every timezone.</span>
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {presence.map((item) => (
+          <div class="group relative p-8 rounded-[2rem] bg-white border border-border/60 hover:border-transparent hover:shadow-[0_20px_60px_-15px_rgba(10,14,26,0.12)] hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+            <div class="absolute -top-16 -right-16 w-32 h-32 rounded-full bg-sky-light/60 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative">
+              <div class="w-14 h-10 mb-6 rounded-md overflow-hidden shadow-sm group-hover:scale-110 transition-transform duration-500 origin-left" set:html={item.flagSvg}></div>
+              <p class="text-xs font-semibold text-sky-accent uppercase tracking-widest mb-3">{item.region}</p>
+              <p class="text-lg font-bold text-ink mb-2 leading-tight">{item.label}</p>
+              <p class="text-sm text-ink-muted">{item.hours}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-white">
+    <div class="container-toven">
+      <div class="relative rounded-[2.5rem] bg-gradient-sky overflow-hidden p-12 md:p-20 text-center">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-white/40 blur-3xl pointer-events-none"></div>
+        <div class="relative">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-ink mb-6 leading-[1.05] tracking-tight">
+            Let's build something serious.
+          </h2>
+          <p class="text-lg text-ink-muted max-w-xl mx-auto mb-10">
+            Book a discovery call. Bring your hardest problem — we will tell you honestly if we can help.
+          </p>
+          <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-ink text-white font-semibold hover:bg-ink-soft transition-colors">
+            Book a discovery call →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -1,17 +1,625 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
+const clients = [
+  'Greenfoot Global Resource Ltd.',
+  'Westend Hospital',
+  'Safari coollabs',
+  'EcoFiberX',
+  'NexaDev Academy',
+  'Dicho Solar Home',
+  'CT Technologies',
+  'RCCG',
+  'Promzygram Homes',
+  'Amaris Kitchen',
+  'Jakia',
+];
+
+const platforms = [
+  { name: 'OpenAI',       icon: 'https://logos.hunter.io/openai.com' },
+  { name: 'Gemini',       icon: 'https://logos.hunter.io/gemini.google.com' },
+  { name: 'Anthropic',    icon: 'https://logos.hunter.io/anthropic.com' },
+  { name: 'AWS',          icon: 'https://logos.hunter.io/aws.amazon.com' },
+  { name: 'Google Cloud', icon: 'https://logos.hunter.io/cloud.google.com' },
+  { name: 'W3Schools',    icon: null },
+  { name: 'IBM Cloud',    icon: 'https://logos.hunter.io/ibm.com' },
+  { name: 'Stripe',       icon: 'https://logos.hunter.io/stripe.com' },
+  { name: 'Paystack',     icon: 'https://logos.hunter.io/paystack.com' },
+  { name: 'Flutter',      icon: 'https://cdn.simpleicons.org/flutter/02569B' },
+  { name: 'Vercel',       icon: 'https://cdn.simpleicons.org/vercel/0a0e1a' },
+  { name: 'Netlify',      icon: 'https://cdn.simpleicons.org/netlify/00C7B7' },
+  { name: 'Render',       icon: null },
+  { name: 'Docker',       icon: 'https://cdn.simpleicons.org/docker/2496ED' },
+  { name: 'Kubernetes',   icon: 'https://cdn.simpleicons.org/kubernetes/326CE5' },
+  { name: 'PostgreSQL',   icon: 'https://cdn.simpleicons.org/postgresql/4169E1' },
+  { name: 'Terraform',    icon: 'https://cdn.simpleicons.org/terraform/7B42BC' },
+  { name: 'GitHub',       icon: 'https://cdn.simpleicons.org/github/0a0e1a' },
+  { name: 'GitLab',       icon: 'https://cdn.simpleicons.org/gitlab/FC6D26' },
+  { name: 'n8n',          icon: 'https://cdn.simpleicons.org/n8n/EA4B71' },
+  { name: 'Cursor',       icon: null },
+];
+
+const services = [
+  { num: '01', slug: '/services/software-development', title: 'Software Development', tagline: 'Backend systems, APIs, and full-stack applications.', description: 'Custom-built software engineered for scale, security, and long-term maintainability.', deliverables: ['Custom backend systems', 'REST & GraphQL APIs', 'Database architecture'], accent: 'sky', icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>` },
+  { num: '02', slug: '/services/ai-agents', title: 'AI Agents & Automation', tagline: 'Production AI systems that automate real work.', description: 'We design and deploy AI agents that handle real business workflows — not demos.', deliverables: ['Custom AI agents', 'LLM integration', 'RAG pipelines'], accent: 'lime', icon: `<path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>` },
+  { num: '03', slug: '/services/infrastructure', title: 'Digital Infrastructure', tagline: 'Cloud architecture, DevOps, and infrastructure.', description: 'Enterprise-grade infrastructure designed by an IBM Solution Architect.', deliverables: ['Cloud architecture', 'CI/CD pipelines', 'Infrastructure as Code'], accent: 'sky-deep', icon: `<rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/>` },
+  { num: '04', slug: '/services/technical-consulting', title: 'Technical Consulting', tagline: 'Senior engineering guidance for teams that need it.', description: 'Architecture reviews, technical due diligence, and strategic guidance.', deliverables: ['Architecture reviews', 'Due diligence', 'Fractional leadership'], accent: 'ink', icon: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>` },
+];
+
+const stats = [
+  { value: 6,  suffix: '+', label: 'Years building',       sub: 'Production systems since 2020',                                      accent: 'sky' },
+  { value: 11, suffix: '',  label: 'Live systems',         sub: 'Running in real businesses today',                                   accent: 'yellow' },
+  { value: 13, suffix: '+', label: 'Industries served',    sub: 'Healthtech, fintech, lab & digital network across different sectors globally', accent: 'sky-deep' },
+  { value: 95, suffix: '%', label: 'Peak efficiency gain', sub: 'Measured across client deployments',                                 accent: 'violet' },
+];
+
+const testimonials = [
+  { name: 'Dr. Johnny', role: 'Medical Director', company: 'Westend Hospital', location: 'Warri, Delta State · Nigeria', quote: "Mr. Samuel built our Hospital Management System in under 6 months — including biometric attendance integration. It has been rock solid since launch. Our operations used to be scattered across paper records and manual processes; today everything runs through one clean system. He didn't just deliver software, he understood how a hospital actually runs.", monogram: 'DJ', photo: '' },
+  { name: 'Mr. Moses London', role: 'CEO', company: 'Greenfoot Global Resources Ltd.', location: 'Lagos · Nigeria', quote: "Tomiwa is on another level entirely. Proactive, sharp, and genuinely the man for the job. Before working with him, most of our operations were manual — slow, error-prone, and limited by what a small team could physically handle. With his input, we scaled over 60% by automating the right things. He doesn't just write code; he thinks like a business owner.", monogram: 'ML', photo: '' },
+  { name: 'Grace Bheashi', role: 'CEO', company: 'Amaris Kitchen', location: 'Sokoto · Nigeria', quote: "The delivery application Toven360° built for us changed how our kitchen operates. Orders come in cleanly, the customer experience is smooth, and I finally have visibility on everything happening in real time. My customers keep telling me how professional it feels — and that matters in food.", monogram: 'GB', photo: '' },
+  { name: 'Favour Gen.', role: 'CEO', company: 'FaTech', location: 'China', quote: "Building an e-commerce platform of this scale is not easy, and I've worked with developers before who just didn't get it. Toven360° does. The engineering is clean, the structure is right, and every feature is built to actually handle real users and real transactions. This is what serious engineering looks like.", monogram: 'FG', photo: '' },
+  { name: 'Engr. Divine Ejefiavwo', role: 'Founder', company: 'Dicho Tech', location: 'Benin City, Edo State · Nigeria', quote: "I needed a website that reflected the quality of the solar work we do, and Toven360° delivered beyond what I expected. Fast, professional, and clean — customers now take us more seriously the moment they land on the site. The attention to detail was personal, not transactional.", monogram: 'DE', photo: '' },
+  { name: 'Mr. Uzoma', role: 'IT Officer', company: 'Westend Hospital', location: 'Warri, Delta State · Nigeria', quote: "Working with Toven360° on our hospital systems, I saw firsthand that they genuinely know the job. Every problem I brought to them was solved properly, not patched over. Sharp, precise, and always ahead of the issue. I learnt things just by watching how they approached engineering.", monogram: 'UZ', photo: '' },
+  { name: 'Safari Lab Manager', role: 'Laboratory Manager', company: 'Safaricoollab', location: 'Delta State · Nigeria', quote: "The laboratory management application Toven360° built for us completely streamlined our daily operations. Role-based access across every staff tier means everyone sees exactly what they should — nothing more, nothing less. It's reliable, secure, and honestly feels like a system built by people who understand lab work.", monogram: 'SC', photo: '' },
+  { name: 'Mr. Marcus Egbelughe', role: 'Store Manager', company: 'Westend Hospital', location: 'Warri, Delta State · Nigeria', quote: "The team brought real structure and accountability to our store operations. Before, tracking inventory and records was a headache — now everything is clean, traceable, and fast. Working with Toven360° genuinely transformed how we run things day to day. I recommend them without hesitation.", monogram: 'ME', photo: '' },
+  { name: 'Engr. Joseph Ademola', role: 'Co-founder', company: 'EcoFiberX', location: 'Lagos · Nigeria', quote: "Toven360° built our subscription platform end-to-end — from the customer dashboard to the backend that keeps it all running. It's live on Google Play and serving thousands of router customers without issue. They engineered it properly from day one, and that's why we've never had to rebuild.", monogram: 'JA', photo: '' },
+  { name: 'Mr. Sadiq', role: 'CEO', company: 'Greyhound Computers', location: 'Abuja · Nigeria', quote: "Toven360° is on another level. The engineering depth, the clarity of communication, the actual delivery — everything about working with them shows real senior talent. I've worked with teams twice their size who delivered half the quality. I don't usually give praise like this, but it's earned.", monogram: 'SD', photo: '' },
+  { name: 'Samuel Iji', role: 'Leadership', company: 'NexaDev Academy', location: 'Remote', quote: "Toven360° mentored our developers with real production-level rigor — actual codebases, real standards, real deadlines. The impact on our engineers was immediate and lasting. Not many mentors can hold both technical depth and teach it clearly. Toven360° can.", monogram: 'SI', photo: '' },
+  { name: 'Promzygram Homes', role: 'Founder', company: 'Promzygram Homes', location: "Côte d'Ivoire", quote: "The website Toven360° built for my real estate business completely changed how clients see us. Property listings look professional, enquiries come through cleanly, and I finally have a proper digital presence. They understood the housing business and built exactly what I needed — not something generic.", monogram: 'PH', photo: '' },
+  { name: 'Olamide Abosede', role: 'Client', company: 'VoltGuard Automation', location: 'Remote', quote: "I needed a way to track my prepaid electricity usage without manually checking the meter all the time. Toven360° built me VoltGuard — now I get automated readings delivered straight to my PDF, email, and WhatsApp. It sounds small, but it changed my daily life. They solved a real problem I had.", monogram: 'OA', photo: '' },
+  { name: 'Boluwatife Adeguigbe', role: 'CEO', company: 'Lunavee', location: 'Lagos · Nigeria', quote: "Mr Samuel built an automation that tracks prices for me across platforms so I always know the right time and amount to sell. It delivers to my email and WhatsApp automatically — I don't have to think about it anymore. This is the kind of quiet automation that actually moves a business forward.", monogram: 'BA', photo: '' },
+  { name: 'Enterprise Client', role: 'Operations Lead', company: 'Internal Automation · Germany', location: 'Remote · Germany', quote: "We brought Toven360° in to automate an internal workflow that was eating hours every week. Within the first week of rollout, our task workload dropped by 40%. They understood the problem, built the right solution, and delivered without drama. Rare in remote engineering partnerships.", monogram: 'EC', photo: '' },
+];
+
+const accentMap = {
+  sky:        { text: 'text-sky-accent',  bg: 'bg-sky-accent/10',  border: 'border-sky-accent/30' },
+  yellow:     { text: 'text-yellow-600',  bg: 'bg-yellow-500/10',  border: 'border-yellow-500/30' },
+  'sky-deep': { text: 'text-sky-deep',    bg: 'bg-sky-deep/15',    border: 'border-sky-deep/30' },
+  violet:     { text: 'text-violet-600',  bg: 'bg-violet-500/10',  border: 'border-violet-500/30' },
+} as const;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Toven360° — Intelligent Systems. Built to Scale."
+  description="AI agents, backend engineering, and digital infrastructure for businesses worldwide. Company-led delivery, globally available."
+>
+
+  <!-- ============================================
+       HERO — Editorial: photo background, left-aligned text
+       ============================================ -->
+  <section class="relative overflow-hidden min-h-screen flex items-center">
+    <!-- Full-bleed photo -->
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=80"
+        alt="Corporate skyscrapers reaching skyward"
+        class="w-full h-full object-cover"
+        loading="eager"
+      />
+      <!-- Dark gradient overlay for text readability -->
+      <div class="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/60 to-ink/30"></div>
+    </div>
+
+    <div class="container-toven relative z-10 py-20 lg:py-28 flex items-center min-h-[85vh]">
+      <div class="max-w-2xl -mt-8 lg:-mt-16">
+
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight mb-8" style="font-family: var(--font-hero);">
+          Intelligent systems.<br />
+          <span class="inline-block bg-lime text-ink rotate-2 px-4 py-1 rounded-2xl">Built</span> to scale.
+        </h1>
+
+        <p class="text-lg md:text-xl text-white/80 max-w-xl mb-10 leading-relaxed">
+          AI agents, backend engineering, and digital infrastructure for businesses worldwide. Company-led delivery, globally available.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="/contact"
+            class="group inline-flex items-center justify-between gap-4 pl-8 pr-2 py-2 rounded-full bg-lime text-ink font-semibold hover:bg-lime-hover transition-colors"
+          >
+            <span>Book a discovery call</span>
+            <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-ink text-lime transition-transform duration-500 group-hover:scale-110">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            </span>
+          </a>
+
+          <a
+            href="#services"
+            class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm text-white font-semibold border border-white/20 hover:bg-white/20 transition-colors"
+          >
+            See what we do
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CLIENTS MARQUEE
+       ============================================ -->
+  <section class="py-12 bg-white border-y border-border overflow-hidden">
+    <div class="container-toven mb-8 text-center">
+      <p class="text-xs font-semibold text-ink-subtle uppercase tracking-[0.25em]">Trusted by teams worldwide</p>
+    </div>
+
+    <div class="marquee">
+      <div class="marquee-track">
+        {clients.concat(clients).map((logo, i) => (
+          <span class="marquee-item font-display font-bold text-2xl text-ink-subtle/60 hover:text-ink transition-colors tracking-tight whitespace-nowrap" aria-hidden={i >= clients.length ? 'true' : 'false'}>
+            {logo}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       STATS
+       ============================================ -->
+  <section class="py-24 bg-surface-soft">
+    <div class="container-toven">
+      <div class="max-w-3xl mb-14 text-center mx-auto">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">By the numbers</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          Real systems.<br /><span class="text-ink-subtle">Real outcomes.</span>
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {stats.map((stat) => {
+          const accent = accentMap[stat.accent as keyof typeof accentMap];
+          return (
+            <div class="group relative p-8 rounded-[2rem] bg-white border border-border/60 hover:border-transparent hover:shadow-[0_20px_60px_-15px_rgba(10,14,26,0.15)] hover:-translate-y-2 transition-all duration-500 overflow-hidden">
+              <div class={`absolute -top-16 -right-16 w-32 h-32 rounded-full ${accent.bg} blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+              <div class="relative">
+                <div class={`inline-flex items-center justify-center px-3 py-1 rounded-full ${accent.bg} mb-6`}>
+                  <span class={`text-[10px] font-bold uppercase tracking-[0.2em] ${accent.text}`}>{stat.label}</span>
+                </div>
+                <p class={`text-5xl md:text-6xl font-extrabold tracking-tight mb-3 ${accent.text}`} style="font-family: var(--font-hero);">
+                  <span class="stat-number" data-target={stat.value}>0</span>{stat.suffix}
+                </p>
+                <p class="text-sm text-ink-muted leading-relaxed">{stat.sub}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PLATFORMS MARQUEE
+       ============================================ -->
+  <section class="py-12 bg-white border-y border-border overflow-hidden">
+    <div class="container-toven mb-8 text-center">
+      <p class="text-xs font-semibold text-ink-subtle uppercase tracking-[0.25em]">
+        Built with world-class platforms
+      </p>
+    </div>
+
+    <div class="marquee marquee-reverse">
+      <div class="marquee-track">
+        {platforms.concat(platforms).map((platform: any, i) => (
+          <span
+            class="marquee-item inline-flex items-center gap-3 whitespace-nowrap"
+            aria-hidden={i >= platforms.length ? 'true' : 'false'}
+          >
+            {platform.icon ? (
+              <img
+                src={platform.icon}
+                alt={platform.name}
+                class="h-8 w-8 object-contain opacity-80"
+                loading="lazy"
+              />
+            ) : (
+              <span class="w-8 h-8 rounded-md bg-surface-soft flex items-center justify-center text-xs font-bold text-ink-subtle opacity-60" style="font-family: var(--font-hero);">
+                {platform.name.charAt(0)}
+              </span>
+            )}
+            <span class="text-sm font-medium text-ink-subtle/50 tracking-tight">
+              {platform.name}
+            </span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SERVICES OVERVIEW
+       ============================================ -->
+  <section id="services" class="relative py-32 bg-white overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-sky-light/30 blur-3xl pointer-events-none"></div>
+
+    <div class="container-toven relative">
+      <div class="max-w-3xl mb-20">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">What we build</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          Four disciplines.<br /><span class="text-ink-subtle">One obsession —</span><br />systems that work.
+        </h2>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start" id="services-interactive">
+        <div class="lg:col-span-5">
+          <div class="space-y-2">
+            {services.map((service, i) => (
+              <a href={service.slug} data-service-index={i} class="service-row group relative flex items-center gap-6 p-6 lg:p-7 rounded-[1.75rem] border border-transparent hover:border-border/60 hover:bg-surface-soft transition-all duration-500 cursor-pointer">
+                <span class="text-4xl lg:text-5xl font-extrabold leading-none text-ink-subtle/40 group-hover:text-ink transition-colors duration-500 shrink-0 w-16" style="font-family: var(--font-hero);">
+                  {service.num}
+                </span>
+                <div class="flex-1 min-w-0">
+                  <h3 class="text-xl lg:text-2xl font-bold text-ink tracking-tight mb-1 truncate">{service.title}</h3>
+                  <p class="text-sm text-ink-muted truncate">{service.tagline}</p>
+                </div>
+                <span class="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-surface-soft group-hover:bg-ink transition-colors duration-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-ink group-hover:text-lime transition-colors duration-500">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 lg:sticky lg:top-32">
+          <div class="relative rounded-[2.5rem] bg-ink text-white overflow-hidden shadow-[0_30px_80px_-20px_rgba(10,14,26,0.35)]" style="min-height: 520px;">
+            <div class="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-sky-accent/20 blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-lime/10 blur-3xl pointer-events-none"></div>
+
+            {services.map((service, i) => (
+              <div data-preview-index={i} class={`service-preview absolute inset-0 p-10 lg:p-14 flex flex-col justify-between transition-all duration-700 ${i === 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+                <div class="flex items-start justify-between gap-6">
+                  <div class="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="text-lime" set:html={service.icon} />
+                  </div>
+                  <span class="text-7xl lg:text-8xl font-extrabold text-white/10 leading-none select-none" style="font-family: var(--font-hero);">{service.num}</span>
+                </div>
+
+                <div class="py-8">
+                  <h3 class="text-3xl lg:text-4xl font-extrabold text-white mb-4 leading-[1.1] tracking-tight" style="font-family: var(--font-hero);">{service.title}</h3>
+                  <p class="text-lg text-white/70 leading-relaxed max-w-lg">{service.description}</p>
+                </div>
+
+                <div class="pt-8 border-t border-white/10">
+                  <p class="text-xs font-semibold text-lime uppercase tracking-[0.2em] mb-4">What's included</p>
+                  <ul class="space-y-3 mb-8">
+                    {service.deliverables.map((item) => (
+                      <li class="flex items-center gap-3 text-sm text-white/80">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-lime shrink-0">
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a href={service.slug} class="group inline-flex items-center gap-2 text-sm font-semibold text-lime hover:gap-3 transition-all">
+                    Explore this service
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TESTIMONIALS
+       ============================================ -->
+  <section class="relative py-32 bg-ink text-white overflow-hidden" id="testimonials">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-sky-accent/10 blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-lime/5 blur-3xl pointer-events-none"></div>
+
+    <div class="container-toven relative">
+      <div class="max-w-3xl mb-16 text-center mx-auto">
+        <p class="text-xs font-semibold text-lime uppercase tracking-[0.2em] mb-4">Testimonials</p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05] tracking-tight mb-6" style="font-family: var(--font-hero);">
+          Hear it from<br /><span class="text-white/50">the ones we built for.</span>
+        </h2>
+        <p class="text-lg text-white/60 max-w-xl mx-auto">Real clients. Real systems. Real results.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-12 items-start" id="testimonials-root">
+        <div class="lg:col-span-7 relative">
+          <div class="flex flex-col items-center">
+            <div class="relative w-full max-w-lg">
+              <div class="absolute inset-x-6 -bottom-3 h-full rounded-[2.5rem] bg-white/5"></div>
+              <div class="absolute inset-x-3 -bottom-1.5 h-full rounded-[2.5rem] bg-white/10"></div>
+
+              <div id="testimonial-card" class="relative rounded-[2rem] bg-surface-soft text-ink p-6 md:p-9 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.65)] hover:-translate-y-1 transition-all duration-700">
+                <div class="absolute -top-12 left-1/2 -translate-x-1/2">
+                  <div class="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-lime bg-gradient-to-br from-sky-accent to-sky-deep flex items-center justify-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.4)]">
+                    <img id="testimonial-photo" src="" alt="" class="hidden w-full h-full object-cover" />
+                    <span class="font-extrabold text-2xl md:text-3xl text-white tracking-tight" id="testimonial-avatar" style="font-family: var(--font-hero);">DJ</span>
+                  </div>
+                </div>
+
+                <div class="pt-14 md:pt-16 text-center">
+                  <div class="flex justify-center gap-1 mb-6">
+                    {[1,2,3,4,5].map(() => (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                      </svg>
+                    ))}
+                  </div>
+
+                  <p class="text-base md:text-lg leading-relaxed text-ink-muted italic mb-6" id="testimonial-quote">"{testimonials[0].quote}"</p>
+
+                  <div class="pt-8 border-t border-border">
+                    <p class="text-lg font-bold text-ink mb-1" id="testimonial-name" style="font-family: var(--font-hero);">{testimonials[0].name}</p>
+                    <p class="text-sm text-ink-muted" id="testimonial-role">{testimonials[0].role} · {testimonials[0].company}</p>
+                    <p class="text-xs text-ink-subtle mt-1" id="testimonial-location">{testimonials[0].location}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-10 flex items-center gap-6">
+              <button type="button" id="testimonial-prev" aria-label="Previous testimonial" class="group inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-lime transition-colors duration-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-white group-hover:text-ink transition-colors duration-500">
+                  <path d="m15 18-6-6 6-6"/>
+                </svg>
+              </button>
+
+              <div class="text-sm font-bold tracking-[0.2em] tabular-nums">
+                <span class="text-lime" id="testimonial-current">01</span>
+                <span class="text-white/40 mx-2">/</span>
+                <span class="text-white/60" id="testimonial-total">15</span>
+              </div>
+
+              <button type="button" id="testimonial-next" aria-label="Next testimonial" class="group inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-lime transition-colors duration-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-white group-hover:text-ink transition-colors duration-500">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="space-y-3 lg:max-h-[600px] lg:overflow-y-auto lg:pr-2" id="testimonial-list">
+            {testimonials.map((t, i) => (
+              <button type="button" data-testimonial-index={i} class="testimonial-list-item group w-full text-left p-5 rounded-2xl border border-white/5 hover:border-white/20 transition-all duration-500 flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-lime transition-colors duration-500 overflow-hidden">
+                  {t.photo ? (
+                    <img src={t.photo} alt={t.name} class="w-full h-full object-cover" />
+                  ) : (
+                    <span class="text-xs font-bold text-white group-hover:text-ink transition-colors duration-500" style="font-family: var(--font-hero);">{t.monogram}</span>
+                  )}
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-bold text-white/90 truncate">{t.name}</p>
+                  <p class="text-xs text-white/50 truncate">{t.role} · {t.company}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA
+       ============================================ -->
+  <section class="py-24 bg-ink text-white">
+    <div class="container-toven text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to build?</h2>
+      <p class="text-lg text-white/70 max-w-2xl mx-auto mb-10">Talk to the engineer leading your project. No sales layer. No noise.</p>
+      <a href="/contact" class="group inline-flex items-center justify-between gap-4 pl-8 pr-2 py-2 rounded-full bg-lime text-ink font-semibold hover:bg-lime-hover transition-colors">
+        <span>Book a discovery call</span>
+        <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-ink text-lime transition-transform duration-500 group-hover:scale-110">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* Marquee */
+  .marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 4rem;
+    width: max-content;
+    animation: marquee-scroll 40s linear infinite;
+  }
+  .marquee-reverse .marquee-track { animation-direction: reverse; }
+  .marquee-item { flex-shrink: 0; }
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+
+</style>
+
+<script>
+  function animateCount(el: HTMLElement, target: number, duration = 1600) {
+    const start = performance.now();
+    const update = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = String(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = String(target);
+    };
+    requestAnimationFrame(update);
+  }
+
+  function initCounters() {
+    const numbers = document.querySelectorAll<HTMLElement>('.stat-number');
+    if (!numbers.length) return;
+    numbers.forEach((el) => {
+      if (el.dataset.animated === 'true') return;
+      const target = Number(el.dataset.target || '0');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const node = entry.target as HTMLElement;
+            if (node.dataset.animated === 'true') return;
+            node.dataset.animated = 'true';
+            animateCount(node, target);
+            observer.unobserve(node);
+          }
+        });
+      }, { threshold: 0.25 });
+      observer.observe(el);
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.9 && rect.bottom > 0 && el.dataset.animated !== 'true') {
+        el.dataset.animated = 'true';
+        animateCount(el, target);
+      }
+    });
+  }
+
+  function initServicesInteractive() {
+    const container = document.getElementById('services-interactive');
+    if (!container) return;
+    if ((container as any)._bound) return;
+    (container as any)._bound = true;
+    const rows = container.querySelectorAll<HTMLElement>('.service-row');
+    const previews = container.querySelectorAll<HTMLElement>('.service-preview');
+    const setActive = (index: number) => {
+      previews.forEach((preview, i) => {
+        if (i === index) {
+          preview.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+          preview.classList.add('opacity-100', 'translate-y-0');
+        } else {
+          preview.classList.remove('opacity-100', 'translate-y-0');
+          preview.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+        }
+      });
+    };
+    rows.forEach((row, i) => {
+      row.addEventListener('mouseenter', () => setActive(i));
+      row.addEventListener('focus', () => setActive(i));
+    });
+    setActive(0);
+  }
+
+  function initTestimonials() {
+    const root = document.getElementById('testimonials-root');
+    if (!root) return;
+    if ((root as any)._bound) return;
+    (root as any)._bound = true;
+
+    const data = [
+      { name: 'Dr. Johnny', role: 'Medical Director', company: 'Westend Hospital', location: 'Warri, Delta State · Nigeria', quote: "Mr. Samuel built our Hospital Management System in under 6 months — including biometric attendance integration. It has been rock solid since launch. Our operations used to be scattered across paper records and manual processes; today everything runs through one clean system. He didn't just deliver software, he understood how a hospital actually runs.", monogram: 'DJ', photo: '' },
+      { name: 'Mr. Moses London', role: 'CEO', company: 'Greenfoot Global Resources Ltd.', location: 'Lagos · Nigeria', quote: "Tomiwa is on another level entirely. Proactive, sharp, and genuinely the man for the job. Before working with him, most of our operations were manual — slow, error-prone, and limited by what a small team could physically handle. With his input, we scaled over 60% by automating the right things. He doesn't just write code; he thinks like a business owner.", monogram: 'ML', photo: '' },
+      { name: 'Grace Bheashi', role: 'CEO', company: 'Amaris Kitchen', location: 'Sokoto · Nigeria', quote: "The delivery application Toven360° built for us changed how our kitchen operates. Orders come in cleanly, the customer experience is smooth, and I finally have visibility on everything happening in real time. My customers keep telling me how professional it feels — and that matters in food.", monogram: 'GB', photo: '' },
+      { name: 'Favour Gen.', role: 'CEO', company: 'FaTech', location: 'China', quote: "Building an e-commerce platform of this scale is not easy, and I've worked with developers before who just didn't get it. Toven360° does. The engineering is clean, the structure is right, and every feature is built to actually handle real users and real transactions. This is what serious engineering looks like.", monogram: 'FG', photo: '' },
+      { name: 'Engr. Divine Ejefiavwo', role: 'Founder', company: 'Dicho Tech', location: 'Benin City, Edo State · Nigeria', quote: "I needed a website that reflected the quality of the solar work we do, and Toven360° delivered beyond what I expected. Fast, professional, and clean — customers now take us more seriously the moment they land on the site. The attention to detail was personal, not transactional.", monogram: 'DE', photo: '' },
+      { name: 'Mr. Uzoma', role: 'IT Officer', company: 'Westend Hospital', location: 'Warri, Delta State · Nigeria', quote: "Working with Toven360° on our hospital systems, I saw firsthand that they genuinely know the job. Every problem I brought to them was solved properly, not patched over. Sharp, precise, and always ahead of the issue. I learnt things just by watching how they approached engineering.", monogram: 'UZ', photo: '' },
+      { name: 'Safari Lab Manager', role: 'Laboratory Manager', company: 'Safaricoollab', location: 'Delta State · Nigeria', quote: "The laboratory management application Toven360° built for us completely streamlined our daily operations. Role-based access across every staff tier means everyone sees exactly what they should — nothing more, nothing less. It's reliable, secure, and honestly feels like a system built by people who understand lab work.", monogram: 'SC', photo: '' },
+      { name: 'Mr. Marcus Egbelughe', role: 'Store Manager', company: 'Westend Hospital', location: 'Warri, Delta State · Nigeria', quote: "The team brought real structure and accountability to our store operations. Before, tracking inventory and records was a headache — now everything is clean, traceable, and fast. Working with Toven360° genuinely transformed how we run things day to day. I recommend them without hesitation.", monogram: 'ME', photo: '' },
+      { name: 'Engr. Joseph Ademola', role: 'Co-founder', company: 'EcoFiberX', location: 'Lagos · Nigeria', quote: "Toven360° built our subscription platform end-to-end — from the customer dashboard to the backend that keeps it all running. It's live on Google Play and serving thousands of router customers without issue. They engineered it properly from day one, and that's why we've never had to rebuild.", monogram: 'JA', photo: '' },
+      { name: 'Mr. Sadiq', role: 'CEO', company: 'Greyhound Computers', location: 'Abuja · Nigeria', quote: "Toven360° is on another level. The engineering depth, the clarity of communication, the actual delivery — everything about working with them shows real senior talent. I've worked with teams twice their size who delivered half the quality. I don't usually give praise like this, but it's earned.", monogram: 'SD', photo: '' },
+      { name: 'Samuel Iji', role: 'Leadership', company: 'NexaDev Academy', location: 'Remote', quote: "Toven360° mentored our developers with real production-level rigor — actual codebases, real standards, real deadlines. The impact on our engineers was immediate and lasting. Not many mentors can hold both technical depth and teach it clearly. Toven360° can.", monogram: 'SI', photo: '' },
+      { name: 'Promzygram Homes', role: 'Founder', company: 'Promzygram Homes', location: "Côte d'Ivoire", quote: "The website Toven360° built for my real estate business completely changed how clients see us. Property listings look professional, enquiries come through cleanly, and I finally have a proper digital presence. They understood the housing business and built exactly what I needed — not something generic.", monogram: 'PH', photo: '' },
+      { name: 'Olamide Abosede', role: 'Client', company: 'VoltGuard Automation', location: 'Remote', quote: "I needed a way to track my prepaid electricity usage without manually checking the meter all the time. Toven360° built me VoltGuard — now I get automated readings delivered straight to my PDF, email, and WhatsApp. It sounds small, but it changed my daily life. They solved a real problem I had.", monogram: 'OA', photo: '' },
+      { name: 'Boluwatife Adeguigbe', role: 'CEO', company: 'Lunavee', location: 'Lagos · Nigeria', quote: "Mr Samuel built an automation that tracks prices for me across platforms so I always know the right time and amount to sell. It delivers to my email and WhatsApp automatically — I don't have to think about it anymore. This is the kind of quiet automation that actually moves a business forward.", monogram: 'BA', photo: '' },
+      { name: 'Enterprise Client', role: 'Operations Lead', company: 'Internal Automation · Germany', location: 'Remote · Germany', quote: "We brought Toven360° in to automate an internal workflow that was eating hours every week. Within the first week of rollout, our task workload dropped by 40%. They understood the problem, built the right solution, and delivered without drama. Rare in remote engineering partnerships.", monogram: 'EC', photo: '' },
+    ];
+
+    let current = 0;
+    const total = data.length;
+
+    const quoteEl = document.getElementById('testimonial-quote');
+    const nameEl = document.getElementById('testimonial-name');
+    const roleEl = document.getElementById('testimonial-role');
+    const locationEl = document.getElementById('testimonial-location');
+    const avatarEl = document.getElementById('testimonial-avatar');
+    const photoEl = document.getElementById('testimonial-photo') as HTMLImageElement | null;
+    const currentEl = document.getElementById('testimonial-current');
+    const prevBtn = document.getElementById('testimonial-prev');
+    const nextBtn = document.getElementById('testimonial-next');
+    const listItems = root.querySelectorAll<HTMLElement>('.testimonial-list-item');
+
+    const setActive = (index: number) => {
+      current = (index + total) % total;
+      const t = data[current];
+      const contentWrapper = quoteEl?.parentElement;
+
+      if (contentWrapper) {
+        contentWrapper.style.transition = 'opacity 250ms ease, transform 250ms ease';
+        contentWrapper.style.opacity = '0';
+        contentWrapper.style.transform = 'translateY(8px)';
+      }
+
+      setTimeout(() => {
+        if (quoteEl) quoteEl.textContent = `"${t.quote}"`;
+        if (nameEl) nameEl.textContent = t.name;
+        if (roleEl) roleEl.textContent = `${t.role} · ${t.company}`;
+        if (locationEl) locationEl.textContent = t.location;
+        if (currentEl) currentEl.textContent = String(current + 1).padStart(2, '0');
+
+        if (photoEl && avatarEl) {
+          if (t.photo) {
+            photoEl.src = t.photo;
+            photoEl.classList.remove('hidden');
+            avatarEl.classList.add('hidden');
+          } else {
+            photoEl.classList.add('hidden');
+            avatarEl.classList.remove('hidden');
+            avatarEl.textContent = t.monogram;
+          }
+        }
+
+        if (contentWrapper) {
+          contentWrapper.style.opacity = '1';
+          contentWrapper.style.transform = 'translateY(0)';
+        }
+      }, 250);
+
+      listItems.forEach((item, i) => {
+        if (i === current) item.classList.add('bg-white/10', 'border-white/30');
+        else item.classList.remove('bg-white/10', 'border-white/30');
+      });
+    };
+
+    prevBtn?.addEventListener('click', () => setActive(current - 1));
+    nextBtn?.addEventListener('click', () => setActive(current + 1));
+    listItems.forEach((item, i) => item.addEventListener('click', () => setActive(i)));
+
+    setActive(0);
+  }
+
+  initCounters();
+  initServicesInteractive();
+  initTestimonials();
+
+  document.addEventListener('swup:contentReplaced', () => {
+    setTimeout(initCounters, 100);
+    setTimeout(initServicesInteractive, 100);
+    setTimeout(initTestimonials, 100);
+  });
+  document.addEventListener('swup:page:view', () => {
+    setTimeout(initCounters, 100);
+    setTimeout(initServicesInteractive, 100);
+    setTimeout(initTestimonials, 100);
+  });
+  document.addEventListener('astro:page-load', () => {
+    setTimeout(initCounters, 100);
+    setTimeout(initServicesInteractive, 100);
+    setTimeout(initTestimonials, 100);
+  });
+</script>

@@ -1,0 +1,210 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const deliverables = [
+  {
+    title: 'Custom AI Agents',
+    description: 'Autonomous agents that reason, plan, and execute real workflows — tuned to your business logic.',
+    icon: '<rect width="16" height="12" x="4" y="8" rx="2"/><path d="M12 8V4H8"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>',
+  },
+  {
+    title: 'LLM Integration',
+    description: 'OpenAI, Anthropic, open-source models — integrated cleanly into your existing stack.',
+    icon: '<path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/>',
+  },
+  {
+    title: 'Workflow Automation',
+    description: 'Turn repetitive manual processes into orchestrated agent pipelines that run themselves.',
+    icon: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
+  },
+  {
+    title: 'RAG Pipelines',
+    description: 'Retrieval-augmented generation over your internal data. Accurate answers, no hallucinations.',
+    icon: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/>',
+  },
+  {
+    title: 'Agent Evaluation',
+    description: 'Testing, monitoring, and guardrails so your AI performs reliably in production.',
+    icon: '<path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c1.66 0 3.22.45 4.56 1.24"/>',
+  },
+  {
+    title: 'AI Strategy & Roadmap',
+    description: 'Where AI actually fits in your business — honest guidance, not hype.',
+    icon: '<path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/><path d="M2 12h20"/>',
+  },
+];
+
+const process = [
+  { step: '01', title: 'Audit', description: 'Identify where AI creates real ROI — and where it does not.' },
+  { step: '02', title: 'Prototype', description: 'A working proof of concept within weeks, not months.' },
+  { step: '03', title: 'Productionize', description: 'Guardrails, evaluation, observability, and rollout.' },
+  { step: '04', title: 'Iterate', description: 'Continuous tuning as your data and use cases evolve.' },
+];
+
+const stack = ['OpenAI', 'Anthropic', 'LangChain', 'LlamaIndex', 'Pinecone', 'Weaviate', 'pgvector', 'Python', 'TypeScript', 'n8n'];
+---
+
+<Layout
+  title="AI Agents & Automation — Toven360°"
+  description="Production AI agents and automation systems that handle real business workflows — not demos. Custom agents, LLM integration, RAG pipelines, and workflow orchestration."
+>
+
+  <!-- HERO -->
+  <section class="relative gradient-sky pt-10 pb-12 md:pt-14 md:pb-16 overflow-hidden">
+    <div class="container-toven relative z-10">
+      <div class="max-w-4xl">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-6">
+          Service · AI Agents & Automation
+        </p>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-ink mb-8 leading-[1.05] tracking-tight" style="font-family: var(--font-hero);">
+          AI that actually<br />
+          <span class="text-gradient">does the work.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed mb-10">
+          Production-grade AI agents and automation systems that handle real business workflows — built by engineers, not prompt salespeople.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-ink text-white font-semibold hover:bg-ink-soft transition-colors">
+            Start a project
+          </a>
+          <a href="/services" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-ink font-semibold border border-border hover:border-ink transition-colors">
+            ← All services
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="py-24 bg-white">
+    <div class="container-toven">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-5">
+          <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+            The approach
+          </p>
+          <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+            Real agents.<br />
+            <span class="text-ink-subtle">Real outcomes.</span>
+          </h2>
+        </div>
+        <div class="lg:col-span-7">
+          <p class="text-lg text-ink-muted leading-relaxed mb-6">
+            Most companies selling "AI consulting" are marketers with API keys. We're the opposite — senior engineers who build production AI systems with proper evaluation, monitoring, and guardrails.
+          </p>
+          <p class="text-lg text-ink-muted leading-relaxed">
+            Whether it's a customer-facing copilot, an internal workflow automator, or a full agentic system — we design it, ship it, and keep it performing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES -->
+  <section class="relative py-32 bg-surface-soft overflow-hidden">
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-lime/20 blur-3xl pointer-events-none"></div>
+
+    <div class="container-toven relative">
+      <div class="max-w-3xl mb-16">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          What's included
+        </p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          From prototype<br />
+          <span class="text-ink-subtle">to production.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {deliverables.map((item) => (
+          <div class="group p-8 rounded-[2rem] bg-white border border-border/60 hover:border-transparent hover:shadow-[0_20px_60px_-15px_rgba(10,14,26,0.12)] transition-all duration-500">
+            <div class="w-12 h-12 rounded-xl bg-lime/40 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="text-ink" set:html={item.icon} />
+            </div>
+            <h3 class="text-lg font-bold text-ink mb-3 tracking-tight">{item.title}</h3>
+            <p class="text-sm text-ink-muted leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="py-32 bg-white">
+    <div class="container-toven">
+      <div class="max-w-3xl mb-20">
+        <p class="text-xs font-semibold text-sky-accent uppercase tracking-[0.2em] mb-4">
+          How we work
+        </p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+          Ship fast.<br />
+          <span class="text-ink-subtle">Scale responsibly.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {process.map((item, i) => {
+          const numberColors = [
+            'text-sky-accent/40',
+            'text-yellow-500/40',
+            'text-sky-deep/40',
+            'text-red-500/40',
+          ];
+          return (
+            <div class="relative">
+              <div class={`text-6xl md:text-7xl font-extrabold mb-4 leading-none ${numberColors[i]}`} style="font-family: var(--font-hero);">
+                {item.step}
+              </div>
+              <h3 class="text-xl font-bold text-ink mb-3 tracking-tight">{item.title}</h3>
+              <p class="text-sm text-ink-muted leading-relaxed">{item.description}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="py-24 bg-ink text-white">
+    <div class="container-toven">
+      <div class="max-w-3xl mb-12">
+        <p class="text-xs font-semibold text-lime uppercase tracking-[0.2em] mb-4">
+          Tools we use
+        </p>
+        <h2 class="text-3xl md:text-4xl font-extrabold leading-[1.1] tracking-tight">
+          Model-agnostic.<br />
+          <span class="text-white/50">Tool-agnostic.</span>
+        </h2>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        {stack.map((tech) => (
+          <span class="px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-white/80 hover:bg-white/10 hover:border-white/20 transition-colors">
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-white">
+    <div class="container-toven">
+      <div class="relative rounded-[2.5rem] bg-gradient-sky overflow-hidden p-12 md:p-20 text-center">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-white/40 blur-3xl pointer-events-none"></div>
+        <div class="relative">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-ink mb-6 leading-[1.05] tracking-tight">
+            Ready to put AI to work?
+          </h2>
+          <p class="text-lg text-ink-muted max-w-xl mx-auto mb-10">
+            Book a discovery call. We'll tell you honestly where AI fits — and where it doesn't.
+          </p>
+          <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-ink text-white font-semibold hover:bg-ink-soft transition-colors">
+            Book a discovery call →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

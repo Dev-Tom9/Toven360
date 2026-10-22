@@ -1,0 +1,54 @@
+---
+interface Props {
+  before?: string;
+  highlight: string;
+  after?: string;
+  rotate?: 'left' | 'right';
+  color?: 'lime' | 'sky' | 'ink';
+  size?: 'md' | 'lg' | 'xl';
+  class?: string;
+}
+
+const {
+  before = '',
+  highlight,
+  after = '',
+  rotate = 'right',
+  color = 'lime',
+  size = 'lg',
+  class: className = '',
+} = Astro.props;
+
+const sizeMap = {
+  md: 'text-4xl md:text-5xl',
+  lg: 'text-5xl md:text-6xl lg:text-7xl',
+  xl: 'text-6xl md:text-7xl lg:text-8xl',
+};
+
+const colorMap = {
+  lime: 'bg-lime text-ink',
+  sky: 'bg-sky-accent text-white',
+  ink: 'bg-ink text-white',
+};
+
+const rotateMap = {
+  left: '-rotate-2',
+  right: 'rotate-2',
+};
+---
+
+<h1 class={`font-hero font-extrabold leading-[1.05] tracking-tight ${sizeMap[size]} ${className}`}>
+  {before}{' '}
+  <span class={`inline-block ${colorMap[color]} ${rotateMap[rotate]} px-5 py-1 rounded-2xl`}>
+    {highlight}
+  </span>
+  {after && <>{' '}{after}</>}
+</h1>
+
+<style>
+  .font-hero {
+    font-family: var(--font-hero);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+</style>
